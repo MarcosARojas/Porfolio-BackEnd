@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SUser implements IUser{
+    
     @Autowired RUser rUser;
     
     @Override
