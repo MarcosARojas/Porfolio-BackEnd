@@ -18,7 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class EUser {
+public class ESecurityUser {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,10 @@ public class EUser {
     
     @NotNull
     @Column(unique=true)
-    private String nombreUser;
+    private String nombreUsuario;
     
     @NotNull
-    private String emial;
+    private String email;
     
     @NotNull
     private String password;
@@ -43,13 +43,13 @@ public class EUser {
     
     //Contrcutor 
 
-    public EUser() {
+    public ESecurityUser() {
     }
 
-    public EUser(String nombre, String nombreUser, String emial, String password) {
+    public ESecurityUser(String nombre, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
-        this.nombreUser = nombreUser;
-        this.emial = emial;
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
         this.password = password;
     }
     
@@ -71,20 +71,20 @@ public class EUser {
         this.nombre = nombre;
     }
 
-    public String getNombreUser() {
-        return nombreUser;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNombreUser(String nombreUser) {
-        this.nombreUser = nombreUser;
+    public void setNombreUser(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
-    public String getEmial() {
-        return emial;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmial(String emial) {
-        this.emial = emial;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

@@ -9,10 +9,10 @@ import com.porfolio.PRM.Security.Dto.JwtDto;
 import com.porfolio.PRM.Security.Dto.LoginUsuario;
 import com.porfolio.PRM.Security.Dto.NuevoUsuario;
 import com.porfolio.PRM.Security.Entity.ERol;
-import com.porfolio.PRM.Security.Entity.EUser;
+import com.porfolio.PRM.Security.Entity.ESecurityUser;
 import com.porfolio.PRM.Security.Enums.RolNombre;
 import com.porfolio.PRM.Security.Service.SRol;
-import com.porfolio.PRM.Security.Service.SUser;
+import com.porfolio.PRM.Security.Service.SSecurityUser;
 import com.porfolio.PRM.Security.jwt.JwtProvider;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,12 +34,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/Auth")
+@RequestMapping("/auth")
 @CrossOrigin
 public class AuthController {
     @Autowired PasswordEncoder passwordEncoder;
     @Autowired AuthenticationManager authenticationManager;
-    @Autowired SUser sUser;
+    @Autowired SSecurityUser sSecurityUser;
     @Autowired SRol sRol;
     @Autowired JwtProvider jwtProvider;
     
@@ -50,13 +50,13 @@ public class AuthController {
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
         
-        if(sUser.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
+        if(sSecurityUser.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
             return new ResponseEntity(new Mensaje("Este nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
          
-        if(sUser.existsByEmail(nuevoUsuario.getEmail()))
+        if(sSecurityUser.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("Este email de usuario ya existe"), HttpStatus.BAD_REQUEST);
         
-        EUser eUser = new EUser(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
+        ESecurityUser eSecurityUser = new ESecurityUser(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(),
                                 nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
         
         Set<ERol> roles = new HashSet<>();
@@ -64,8 +64,8 @@ public class AuthController {
         
         if(nuevoUsuario.getRoles().contains("admin"))
             roles.add(sRol.getByRolNombre(RolNombre.ROLE_USER).get());
-        eUser.setRoles(roles);
-        sUser.save(eUser);
+        eSecurityUser.setRoles(roles);
+        sSecurityUser.save(eSecurityUser);
         
         return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
         

@@ -1,7 +1,8 @@
-package com.porfolio.PRM.Controller;
+/*package com.porfolio.PRM.Controller;
 
 import com.porfolio.PRM.Dto.DtoExperiencia;
 import com.porfolio.PRM.Entity.EExperiencia;
+import com.porfolio.PRM.Security.Controller.Mensaje;
 import com.porfolio.PRM.Service.SExperiencia;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
+/*
 @RestController
 @RequestMapping("experiencia")
 @CrossOrigin(origins = "http://localhost:4200/")
@@ -65,12 +66,12 @@ public class CExperiencia {
         sExperiencia.save(eExperiencia);
         return new ResponseEntity(new Mensaje("Experiencia actualizada"), HttpStatus.OK);
              
-    }*/
+    }
     
 }
 
 
-
+*/
 
 
 

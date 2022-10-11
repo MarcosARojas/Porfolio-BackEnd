@@ -1,4 +1,4 @@
-package com.porfolio.PRM.Entity;
+/*package com.porfolio.PRM.Entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

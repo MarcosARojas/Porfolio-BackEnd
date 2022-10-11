@@ -15,26 +15,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class EUserRoot implements UserDetails{
     
     private String nombre;
-    private String nombreUser;
+    private String nombreUsuario;
     private String email;
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
     
     //Constructor
 
-    public EUserRoot(String nombre, String nombreUser, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public EUserRoot(String nombre, String nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.nombre = nombre;
-        this.nombreUser = nombreUser;
+        this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
     }
     
-    public static EUserRoot build(EUser eUser){
-        List<GrantedAuthority> authorities = eUser.getRoles().stream()
+    public static EUserRoot build(ESecurityUser eSecurityUser){
+        List<GrantedAuthority> authorities = eSecurityUser.getRoles().stream()
                 .map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors
                         .toList());
-        return new EUserRoot(eUser.getNombre(),eUser.getNombreUser(),eUser.getEmial(),eUser.getPassword(), authorities); 
+        return new EUserRoot(eSecurityUser.getNombre(),eSecurityUser.getNombreUsuario(),eSecurityUser.getEmail(),eSecurityUser.getPassword(), authorities); 
     }
 
     @Override
@@ -59,7 +59,7 @@ public class EUserRoot implements UserDetails{
 
     @Override
     public String getUsername() {
-        return nombreUser;
+        return nombreUsuario;
     }
 
     @Override

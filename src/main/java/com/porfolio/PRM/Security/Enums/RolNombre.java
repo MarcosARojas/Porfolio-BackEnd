@@ -9,5 +9,5 @@ package com.porfolio.PRM.Security.Enums;
  * @author Marcos
  */
 public enum RolNombre {
-    ROLE_ADMIN, ROLE_USER
+    ROLE_ADMIN, ROLE_USER;
 }

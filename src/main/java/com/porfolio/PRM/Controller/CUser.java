@@ -4,6 +4,7 @@ import com.porfolio.PRM.Entity.EUser;
 import com.porfolio.PRM.Service.SUser;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +25,21 @@ public class CUser {
         return sUser.getUser();
     }
     
+    @PreAuthorize("hasRole('admin')")
     @PostMapping("user/crear")
     public String createEUser(@RequestBody EUser eUser){
         sUser.saveUser(eUser);
         return "La persona fue creada con exito";
     }
     
+    @PreAuthorize("hasRole('admin')")
     @DeleteMapping("user/borrar/{id}")
     public String deleteEUser(@PathVariable Long id){
         sUser.deleteUser(id);
         return "Fue borrado con exito";
     }
     
+    @PreAuthorize("hasRole('admin')")
     @PutMapping("user/editar/{id}")
     public EUser editEUser(@PathVariable Long id,
                                @RequestParam("nombre") String nuevoNombre,

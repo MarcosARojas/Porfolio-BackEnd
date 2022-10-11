@@ -4,12 +4,12 @@
  */
 package com.porfolio.PRM.Security.Service;
 
-import com.porfolio.PRM.Security.Entity.EUser;
-import com.porfolio.PRM.Security.Repository.IUserRepository;
+import com.porfolio.PRM.Security.Entity.ESecurityUser;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.porfolio.PRM.Security.Repository.IUserRepository;
 
 
 /**
@@ -19,10 +19,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class SUser {
+public class SSecurityUser {
     @Autowired IUserRepository iUserRepository;
     
-    public Optional<EUser> getByNombreUsuario(String nombreUsuario){
+    public Optional<ESecurityUser> getByNombreUsuario(String nombreUsuario){
         return iUserRepository.findByNombreUsuario(nombreUsuario);
     }
     
@@ -34,8 +34,8 @@ public class SUser {
         return iUserRepository.existsByEmail(email);
     }
     
-    public void save(EUser eUser){
-        iUserRepository.save(eUser);
+    public void save(ESecurityUser eSecurityUser){
+        iUserRepository.save(eSecurityUser);
     }
     
 }

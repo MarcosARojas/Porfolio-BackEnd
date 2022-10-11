@@ -4,7 +4,7 @@
  */
 package com.porfolio.PRM.Security.Service;
 
-import com.porfolio.PRM.Security.Entity.EUser;
+import com.porfolio.PRM.Security.Entity.ESecurityUser;
 import com.porfolio.PRM.Security.Entity.EUserRoot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,12 +18,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SUserDetailsImpl implements UserDetailsService{
-    @Autowired SUser sUser;
+    @Autowired SSecurityUser sSecurityUser;
 
     @Override
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException {
-        EUser eUser = sUser.getByNombreUsuario(nombreUsuario).get();
-        return EUserRoot.build(eUser); 
+        ESecurityUser eSecurityUser = sSecurityUser.getByNombreUsuario(nombreUsuario).get();
+        return EUserRoot.build(eSecurityUser); 
     }
     
     

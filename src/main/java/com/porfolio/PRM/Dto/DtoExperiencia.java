@@ -2,14 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.porfolio.PRM.Dto;
+/*package com.porfolio.PRM.Dto;
 
 import javax.validation.constraints.NotBlank;
 
-/**
- *
- * @author Marcos
- */
+
 public class DtoExperiencia {
     @NotBlank
     private String puesto;
@@ -72,3 +69,4 @@ public class DtoExperiencia {
     
     
 }
+*/
