@@ -1,4 +1,4 @@
-/*package com.porfolio.PRM.Entity;
+package com.porfolio.PRM.Entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -40,7 +40,7 @@ public class EExperiencia implements Serializable {
     public EExperiencia() {
     }
 
-    public EExperiencia(String puesto, String empresa, String periodo, String descripcion, String urlfoto) {
+    public EExperiencia(String puesto, String empresa, String periodo, String descripcion) {
         this.puesto = puesto;
         this.empresa = empresa;
         this.periodo = periodo;

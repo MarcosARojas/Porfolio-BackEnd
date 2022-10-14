@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/*package com.porfolio.PRM.Service;
+package com.porfolio.PRM.Service;
 
 
 import com.porfolio.PRM.Entity.EExperiencia;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 /**
  * Analogia a IPersonaService
  */
-/*@Service
+@Service
 @Transactional
 public class SExperiencia {
         @Autowired RExperiencia rExperiencia;
@@ -41,7 +41,7 @@ public class SExperiencia {
             rExperiencia.deleteById(id);
         }
         
-        public boolean existById(int id){
+        public boolean existsById(int id){
             return rExperiencia.existsById(id);
         }
         
@@ -51,7 +51,7 @@ public class SExperiencia {
         
         
 }
-*/
+
 
 
 

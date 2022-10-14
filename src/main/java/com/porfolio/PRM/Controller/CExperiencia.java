@@ -1,4 +1,4 @@
-/*package com.porfolio.PRM.Controller;
+package com.porfolio.PRM.Controller;
 
 import com.porfolio.PRM.Dto.DtoExperiencia;
 import com.porfolio.PRM.Entity.EExperiencia;
@@ -10,34 +10,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-/*
 @RestController
-@RequestMapping("experiencia")
-@CrossOrigin(origins = "http://localhost:4200/")
+@RequestMapping("experiencia/")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CExperiencia {
     @Autowired SExperiencia sExperiencia;
     
-    @GetMapping("/lista/")
+    @GetMapping("lista")
     public ResponseEntity<List<EExperiencia>>list(){
         List<EExperiencia> list = sExperiencia.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-    @PostMapping("/crear/experiencia/")
-    public ResponseEntity<?> creat(@RequestBody DtoExperiencia dtoExperiencia){
+     @GetMapping("details/{id}")
+    public ResponseEntity<EExperiencia> getById(@PathVariable("id") int id){
+        if(!sExperiencia.existsById(id))
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        EExperiencia eExperiencia = sExperiencia.getOne(id).get();
+        return new ResponseEntity(eExperiencia, HttpStatus.OK);
+    }
+    
+    
+    @PostMapping("crear")
+    public ResponseEntity<?> create(@RequestBody DtoExperiencia dtoExperiencia){
         if (StringUtils.isBlank(dtoExperiencia.getPuesto()))
             return new ResponseEntity(new Mensaje("El nombre es Obligatorio"), HttpStatus.BAD_REQUEST);
         if (sExperiencia.existsByPuesto(dtoExperiencia.getPuesto()))
             return new ResponseEntity(new Mensaje("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);
         
-        EExperiencia eExperiencia = new EExperiencia(dtoExperiencia.getPuesto(),
+        EExperiencia eExperiencia = new EExperiencia(
+                                                    dtoExperiencia.getPuesto(),
                                                     dtoExperiencia.getEmpresa(),
                                                     dtoExperiencia.getPeriodo(),
                                                     dtoExperiencia.getDescripcion()
@@ -47,7 +59,7 @@ public class CExperiencia {
         return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
     }
     
-    /*@PutMapping("/update/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoExperiencia dtoExperiencia){
         //Validamos si existe el ID
         if(!sExperiencia.existsById(id))
@@ -68,59 +80,16 @@ public class CExperiencia {
              
     }
     
+    
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id){
+        //Validamos si existe el ID
+        if(!sExperiencia.existsById(id))
+            return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
+        
+        sExperiencia.delete(id);
+        return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
+    }
+    
+   
 }
-
-
-*/
-
-
-
-
-
-
-/*------------------------------------------------------------------------------
-@Autowired SExperiencia sExperiencia;
-    
-    @GetMapping("experiencia")
-    public List<EExperiencia> getUser(@PathVariable Long id){
-        return sExperiencia.getExperiencia();
-    }
-    
-    @PostMapping("experiencia/crear")
-    public String createEExperiencia(@RequestBody EExperiencia eExperiencia){
-        sExperiencia.saveExperiencia(eExperiencia);
-        return "La experiencia fue creada con exito";
-    }
-    
-    @DeleteMapping("experiencia/borrar/{id}")
-    public String deleteEExperiencia(@PathVariable Long id){
-        sExperiencia.deleteExperiencia(id);
-        return "Fue borrado con exito";
-    }
-    
-    @PutMapping("experiencia/editar/{id}")
-    public EExperiencia editEExperiencia(@PathVariable Long id,
-                               @RequestParam("puesto") String nuevoPuesto,
-                               @RequestParam("empresa") String nuevoEmpresa,
-                               @RequestParam("periodo") String nuevoPeriodo,
-                               @RequestParam("descripcion") String nuevoDescripcion,
-                               @RequestParam("urlfoto") String nuevoUrlfoto){
-        
-        EExperiencia eExperiencia = sExperiencia.findExperiencia(id);
-        
-        eExperiencia.setPuesto(nuevoPuesto);
-        eExperiencia.setEmpresa(nuevoEmpresa);
-        eExperiencia.setPeriodo(nuevoPeriodo);
-        eExperiencia.setDescripcion(nuevoDescripcion);
-        eExperiencia.setUrlfoto(nuevoUrlfoto);
-        
-        sExperiencia.saveExperiencia(eExperiencia);
-        
-        return eExperiencia;
-    }
-    
-    @GetMapping("experiencia/traer/")
-    public EExperiencia findExperiencia(){
-        return sExperiencia.findExperiencia((long)2);
-    }
-*/
