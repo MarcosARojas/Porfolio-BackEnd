@@ -4,7 +4,6 @@
  */
 package com.porfolio.PRM.Service;
 
-
 import com.porfolio.PRM.Entity.EExperiencia;
 import com.porfolio.PRM.Repository.RExperiencia;
 import java.util.List;
@@ -13,9 +12,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Analogia a IPersonaService
- */
 @Service
 @Transactional
 public class SExperiencia {
@@ -51,41 +47,3 @@ public class SExperiencia {
         
         
 }
-
-
-
-
-
-
-
-
-
-
-/*------------------------------------------------------------------------------
-@Getter @Setter
-@Service
-public class SExperiencia implements IExperiencia{
-    
-    @Autowired RExperiencia rExperiencia;
-    
-    @Override
-    public List<EExperiencia> getExperiencia() {
-      List<EExperiencia> eExperiencia = rExperiencia.findAll();
-      return eExperiencia;
-    }
-
-    @Override
-    public void saveExperiencia(EExperiencia eExperiencia) {
-        rExperiencia.save(eExperiencia);
-    }
-
-    @Override
-    public void deleteExperiencia(Long id) {
-        rExperiencia.deleteById(id);
-    }
-
-    @Override
-    public EExperiencia findExperiencia(Long id) {
-        EExperiencia eExperiencia = rExperiencia.findById(id).orElse(null);
-        return eExperiencia;
-    }*/

@@ -32,7 +32,7 @@ public class CExperiencia {
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-     @GetMapping("details/{id}")
+    @GetMapping("details/{id}")
     public ResponseEntity<EExperiencia> getById(@PathVariable("id") int id){
         if(!sExperiencia.existsById(id))
             return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
