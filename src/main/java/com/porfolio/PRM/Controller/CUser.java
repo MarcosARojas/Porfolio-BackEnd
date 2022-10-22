@@ -73,7 +73,7 @@ public class CUser {
         return eUser;
     }
     
-    @GetMapping("user/traer/")
+    @GetMapping("user/traer")
     public EUser findPersona(){
         return sUser.findUser((long)1);
     }

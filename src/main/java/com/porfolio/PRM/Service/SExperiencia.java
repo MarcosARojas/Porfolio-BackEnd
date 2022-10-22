@@ -15,35 +15,36 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class SExperiencia {
-        @Autowired RExperiencia rExperiencia;
-        
-        public List<EExperiencia> list(){
-            return rExperiencia.findAll();
-        }
-        
-        public Optional<EExperiencia> getOne(int id){
-            return rExperiencia.findById(id);
-        } 
-        
-        public Optional<EExperiencia> getByPuesto(String puesto){
-            return rExperiencia.findByPuesto(puesto);
-        }
-        
-        public void save(EExperiencia eExperiencia){
-            rExperiencia.save(eExperiencia);
-        }
-        
-        public void delete(int id){
-            rExperiencia.deleteById(id);
-        }
-        
-        public boolean existsById(int id){
-            return rExperiencia.existsById(id);
-        }
-        
-        public boolean existsByPuesto(String puesto){
-            return rExperiencia.existsByPuesto(puesto);
-        }
-        
-        
+
+    @Autowired
+    RExperiencia rExperiencia;
+
+    public List<EExperiencia> list() {
+        return rExperiencia.findAll();
+    }
+
+    public Optional<EExperiencia> getOne(int id) {
+        return rExperiencia.findById(id);
+    }
+
+    public Optional<EExperiencia> getByPuesto(String puesto) {
+        return rExperiencia.findByPuesto(puesto);
+    }
+
+    public void save(EExperiencia eExperiencia) {
+        rExperiencia.save(eExperiencia);
+    }
+
+    public void delete(int id) {
+        rExperiencia.deleteById(id);
+    }
+
+    public boolean existsById(int id) {
+        return rExperiencia.existsById(id);
+    }
+
+    public boolean existsByPuesto(String puesto) {
+        return rExperiencia.existsByPuesto(puesto);
+    }
+
 }

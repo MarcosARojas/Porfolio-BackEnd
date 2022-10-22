@@ -5,25 +5,40 @@
 package com.porfolio.PRM.Dto;
 
 import javax.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter @Setter
+
 public class DtoSkill {
     
     @NotBlank
     private String nombre;
     
     @NotBlank
-    private int porcentaje;
+    private String porcentaje;
 
     public DtoSkill() {
     }
 
-    public DtoSkill(String nombre, int porcentaje) {
+    public DtoSkill(String nombre, String porcentaje) {
         this.nombre = nombre;
         this.porcentaje = porcentaje;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(String porcentaje) {
+        this.porcentaje = porcentaje;
+    }
+    
     
     
 }

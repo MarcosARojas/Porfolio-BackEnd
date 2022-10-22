@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.porfolio.PRM.Controller;
 
 import com.porfolio.PRM.Dto.DtoSkill;
@@ -23,54 +19,57 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-@RequestMapping("/Skill")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("skill/")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class CSkill {
     @Autowired SSkill sSkill;
     
-    @GetMapping("/lista")
+    @GetMapping("lista")
     public ResponseEntity<List<ESkill>>list(){
         List<ESkill> list = sSkill.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-    @GetMapping("/details/{id}")
+    @GetMapping("details/{id}")
     public ResponseEntity<ESkill> getById(@PathVariable("id") int id){
-        if(!sSkill.existsById(id)){
-            return new ResponseEntity(new Mensaje("no existe el ID"), HttpStatus.NOT_FOUND);
-        }
-        
+        if(!sSkill.existsById(id)) {
+            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+        } else {
         ESkill eSkill = sSkill.getOne(id).get();
         return new ResponseEntity(eSkill, HttpStatus.OK);
+        }
     }
     
     
-    @PostMapping("/crear")
+    @PostMapping("crear")
     public ResponseEntity<?> create(@RequestBody DtoSkill dtoSkill){
         if (StringUtils.isBlank(dtoSkill.getNombre())){
             return new ResponseEntity(new Mensaje("El nombre es Obligatorio"), HttpStatus.BAD_REQUEST);
         }
         if (sSkill.existsByNombre(dtoSkill.getNombre())){
-            return new ResponseEntity(new Mensaje("Esa Skill ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("Esa experiencia ya existe"), HttpStatus.BAD_REQUEST);
         }
         
-        ESkill eSkill = new ESkill( dtoSkill.getNombre(),dtoSkill.getPorcentaje());
+        ESkill eSkill = new ESkill(
+                                                    dtoSkill.getNombre(),
+                                                    dtoSkill.getPorcentaje()
+                                                    );
         sSkill.save(eSkill);
         
-        return new ResponseEntity(new Mensaje("Skill agregada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);
     }
     
-    @PutMapping("/update/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoSkill dtoSkill){
         //Validamos si existe el ID
         if(!sSkill.existsById(id)){
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);
         }
         //Compara nombre de experiencias
-        if(sSkill.existsByNombre(dtoSkill.getNombre()) && 
-                sSkill.getByNombre(dtoSkill.getNombre()).get().getId() != id){
-            return new ResponseEntity(new Mensaje("Esa eSkill ya existe"), HttpStatus.BAD_REQUEST);
+        if(sSkill.existsByNombre(dtoSkill.getNombre()) && sSkill.getByNombre(dtoSkill.getNombre()).get().getId() != id){
+            return new ResponseEntity(new Mensaje("Esa Skill ya existe"), HttpStatus.BAD_REQUEST);
         }
         //No puede estar vacio
         if(StringUtils.isBlank(dtoSkill.getNombre())){
@@ -87,14 +86,16 @@ public class CSkill {
     }
     
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         //Validamos si existe el ID
         if(!sSkill.existsById(id)){
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
-        }
+        } else {
         sSkill.delete(id);
         return new ResponseEntity(new Mensaje("Skill eliminada"), HttpStatus.OK);
+        }
     }
     
+   
 }

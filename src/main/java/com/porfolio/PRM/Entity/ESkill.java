@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.porfolio.PRM.Entity;
 
 import javax.persistence.Entity;
@@ -10,10 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter @Setter
+
 @Entity
 public class ESkill {
      @Id
@@ -26,13 +20,37 @@ public class ESkill {
     
     @NotNull
     @Size (min = 1, max = 10, message="El porcentaje no cumple con la longitud.")
-    private int porcentaje;
+    private String porcentaje;
 
     public ESkill() {
     }
 
-    public ESkill(String nombre, int porcentaje) {
+    public ESkill(String nombre, String porcentaje) {
         this.nombre = nombre;
+        this.porcentaje = porcentaje;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(String porcentaje) {
         this.porcentaje = porcentaje;
     }
     
