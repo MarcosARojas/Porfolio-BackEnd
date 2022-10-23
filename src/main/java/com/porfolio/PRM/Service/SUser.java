@@ -30,7 +30,7 @@ public class SUser{
         return rUser.findAll();
     }
 
-    public Optional<EUser> getOne(int id) {
+    public Optional<EUser> getOne(long id) {
         return rUser.findById(id);
     }
 
@@ -42,11 +42,11 @@ public class SUser{
         rUser.save(eUser);
     }
 
-    public void delete(int id) {
+    public void delete(long id) {
         rUser.deleteById(id);
     }
 
-    public boolean existsById(int id) {
+    public boolean existsById(long id) {
         return rUser.existsById(id);
     }
 

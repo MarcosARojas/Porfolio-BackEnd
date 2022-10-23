@@ -2,8 +2,10 @@ package com.porfolio.PRM.Controller;
 
 import com.porfolio.PRM.Dto.DtoSkill;
 import com.porfolio.PRM.Entity.ESkill;
+import com.porfolio.PRM.Entity.EUser;
 import com.porfolio.PRM.Security.Controller.Mensaje;
 import com.porfolio.PRM.Service.SSkill;
+import com.porfolio.PRM.Service.SUser;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

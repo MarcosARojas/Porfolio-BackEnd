@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 public class EUser implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     
     @NotNull
     @Size (min = 1, max = 50, message="El nombre no cumple con la longitud.")
@@ -77,11 +77,11 @@ public class EUser implements Serializable {
     
     //Getter and setter
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

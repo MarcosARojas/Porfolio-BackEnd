@@ -30,6 +30,7 @@ public class CUser {
         return sUser.findUser((long)1);
     }
     
+    
     @GetMapping("details/{id}")
     public ResponseEntity<EUser> getById(@PathVariable("id") int id){
         if(!sUser.existsById(id)) {
@@ -69,7 +70,7 @@ public class CUser {
     }
     
     @PutMapping("update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoUser dtoUser){
+    public ResponseEntity<?> update(@PathVariable("id") long id, @RequestBody DtoUser dtoUser){
         //Validamos si existe el ID
         if(!sUser.existsById(id)){
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.NOT_FOUND);

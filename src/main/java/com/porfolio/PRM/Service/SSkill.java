@@ -46,5 +46,5 @@ public class SSkill {
     public boolean existsByNombre(String nombre) {
         return rSkill.existsByNombre(nombre);
     }
-
+    
 }
