@@ -6,9 +6,11 @@ package com.porfolio.PRM.Service;
 
 
 import com.porfolio.PRM.Entity.EUser;
-import com.porfolio.PRM.Interface.IUser;
 import com.porfolio.PRM.Repository.RUser;
+import com.porfolio.PRM.Repository.RUser1;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,30 +18,44 @@ import org.springframework.stereotype.Service;
  * Analogia a IPersonaService
  */
 @Service
-public class SUser implements IUser{
+@Transactional
+public class SUser{
     
-    @Autowired RUser rUser;
-    
-    @Override
-    public List<EUser> getUser() {
-      List<EUser> eUser = rUser.findAll();
-      return eUser;
+    @Autowired
+    RUser rUser;
+    @Autowired
+    RUser1 rUser1;
+
+    public List<EUser> list() {
+        return rUser.findAll();
     }
 
-    @Override
-    public void saveUser(EUser eUser) {
+    public Optional<EUser> getOne(int id) {
+        return rUser.findById(id);
+    }
+
+    public Optional<EUser> getByNombre(String nombre) {
+        return rUser.findByNombre(nombre);
+    }
+
+    public void save(EUser eUser) {
         rUser.save(eUser);
     }
 
-    @Override
-    public void deleteUser(Long id) {
+    public void delete(int id) {
         rUser.deleteById(id);
     }
 
-    @Override
-    public EUser findUser(Long id) {
-        EUser eUser = rUser.findById(id).orElse(null);
-        return eUser;
+    public boolean existsById(int id) {
+        return rUser.existsById(id);
+    }
+
+    public boolean existsByNombre(String nombre) {
+        return rUser.existsByNombre(nombre);
     }
     
+    public EUser findUser(Long id) {
+        EUser eUser = rUser1.findById(id).orElse(null);
+        return eUser;
+    }
 }

@@ -5,12 +5,10 @@
 package com.porfolio.PRM.Repository;
 
 import com.porfolio.PRM.Entity.EUser;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RUser extends JpaRepository<EUser, Integer>{ 
-    public Optional<EUser> findByNombre(String nombre);
-    public boolean existsByNombre(String nombre);
+public interface RUser1 extends JpaRepository<EUser, Long>{
+    
 }

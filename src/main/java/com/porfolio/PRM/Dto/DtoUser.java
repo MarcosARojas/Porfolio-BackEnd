@@ -1,66 +1,49 @@
-package com.porfolio.PRM.Entity;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.porfolio.PRM.Dto;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
 
-
-@Entity
-@Table (name ="usuario")
-public class EUser implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+/**
+ *
+ * @author Marcos
+ */
+public class DtoUser {
     
-    @NotNull
-    @Size (min = 1, max = 50, message="El nombre no cumple con la longitud.")
+    @NotBlank
     private String nombre;
     
-    @NotNull
-    @Size(min=1,max=50, message="El nombre no cumple con la longitud.")
+    @NotBlank
     private String apellido;
     
-    @NotNull
-    @Size(min=1,max=100, message="El nombre no cumple con la longitud.")
+    @NotBlank
     private String email;
     
-    @NotNull
-    @Size(min=1,max=50, message="El nombre no cumple con la longitud.")
+    @NotBlank
     private String titulo;
     
-    @NotNull
-    @Size(min=1,max=250, message="La descripcion no cumple con la longitud.")
+    @NotBlank
     private String descripcion;
     
-    @Size(max=500, message="El link es muy largo.")
+    @NotBlank
     private String urlPerfil;
     
-    @Size(max=500, message="El link es muy largo.")
     private String urlBanner;
     
-    @Size(max=500, message="El link es muy largo.")
     private String uLinkedin;
     
-    @Size(max=500, message="El link es muy largo.")
     private String uInstagram;
     
-    @Size(max=500, message="El link es muy largo.")
     private String uFacebook;
     
-    @Size(max=500, message="El link es muy largo.")
     private String uGitHub;
-    
-    //constructor
 
-    public EUser() {
+    public DtoUser() {
     }
 
-    public EUser(String nombre, String apellido, String email, String titulo, String descripcion, String urlPerfil, String urlBanner, String uLinkedin, String uInstagram, String uFacebook, String uGitHub) {
+    public DtoUser(String nombre, String apellido, String email, String titulo, String descripcion, String urlPerfil, String urlBanner, String uLinkedin, String uInstagram, String uFacebook, String uGitHub) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -72,17 +55,6 @@ public class EUser implements Serializable {
         this.uInstagram = uInstagram;
         this.uFacebook = uFacebook;
         this.uGitHub = uGitHub;
-    }
-
-    
-    //Getter and setter
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -140,8 +112,6 @@ public class EUser implements Serializable {
     public void setUrlBanner(String urlBanner) {
         this.urlBanner = urlBanner;
     }
-    
-    
 
     public String getuLinkedin() {
         return uLinkedin;
@@ -176,5 +146,5 @@ public class EUser implements Serializable {
     }
     
     
+    
 }
-

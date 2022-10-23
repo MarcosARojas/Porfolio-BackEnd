@@ -80,6 +80,8 @@ public class CExperiencia {
         
         EExperiencia eExperiencia = sExperiencia.getOne(id).get();
         eExperiencia.setPuesto(dtoExperiencia.getPuesto());
+        eExperiencia.setEmpresa(dtoExperiencia.getEmpresa());
+        eExperiencia.setPeriodo(dtoExperiencia.getPeriodo());
         eExperiencia.setDescripcion((dtoExperiencia.getDescripcion()));
         
         sExperiencia.save(eExperiencia);

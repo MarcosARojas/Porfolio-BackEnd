@@ -80,6 +80,7 @@ public class CEducacion {
         
         EEducacion eEducacion = sEducacion.getOne(id).get();
         eEducacion.setTitulo(dtoEducacion.getTitulo());
+        eEducacion.setPeriodo(dtoEducacion.getPeriodo());
         eEducacion.setInstitucion((dtoEducacion.getInstitucion()));
         
         sEducacion.save(eEducacion);
