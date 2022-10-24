@@ -34,8 +34,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
-@CrossOrigin
+@RequestMapping("auth/")
+@CrossOrigin(origins = "https://myprojasmarcos.web.app/")
 public class AuthController {
     @Autowired PasswordEncoder passwordEncoder;
     @Autowired AuthenticationManager authenticationManager;
@@ -44,7 +44,7 @@ public class AuthController {
     @Autowired JwtProvider jwtProvider;
     
     
-    @PostMapping("/nuevo")
+    @PostMapping("nuevos")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         
         if(bindingResult.hasErrors())
@@ -71,7 +71,7 @@ public class AuthController {
         
     }
     
-    @PostMapping("/loggin")
+    @PostMapping("loggin")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);

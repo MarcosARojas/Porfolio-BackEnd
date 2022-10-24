@@ -21,18 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/educacion")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("educacion/")
+@CrossOrigin(origins = "https://myprojasmarcos.web.app/")
 public class CEducacion {
     @Autowired SEducacion sEducacion;
     
-    @GetMapping("/lista")
+    @GetMapping("lista")
     public ResponseEntity<List<EEducacion>>list(){
         List<EEducacion> list = sEducacion.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
     
-    @GetMapping("/details/{id}")
+    @GetMapping("details/{id}")
     public ResponseEntity<EEducacion> getById(@PathVariable("id") int id){
         if(!sEducacion.existsById(id)){
             return new ResponseEntity(new Mensaje("no existe el ID"), HttpStatus.NOT_FOUND);
@@ -43,7 +43,7 @@ public class CEducacion {
     }
     
     
-    @PostMapping("/crear")
+    @PostMapping("crear")
     public ResponseEntity<?> create(@RequestBody DtoEducacion dtoEducacion){
         if (StringUtils.isBlank(dtoEducacion.getTitulo())){
             return new ResponseEntity(new Mensaje("El nombre es Obligatorio"), HttpStatus.BAD_REQUEST);
@@ -62,7 +62,7 @@ public class CEducacion {
         return new ResponseEntity(new Mensaje("Educacion agregada"), HttpStatus.OK);
     }
     
-    @PutMapping("/update/{id}")
+    @PutMapping("update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoEducacion dtoEducacion){
         //Validamos si existe el ID
         if(!sEducacion.existsById(id)){
@@ -89,7 +89,7 @@ public class CEducacion {
     }
     
     
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         //Validamos si existe el ID
         if(!sEducacion.existsById(id)){
