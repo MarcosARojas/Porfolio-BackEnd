@@ -35,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("auth/")
-@CrossOrigin(origins = "**")
+@CrossOrigin
 public class AuthController {
     @Autowired PasswordEncoder passwordEncoder;
     @Autowired AuthenticationManager authenticationManager;
@@ -44,7 +44,7 @@ public class AuthController {
     @Autowired JwtProvider jwtProvider;
     
     
-    @PostMapping("nuevos")
+    @PostMapping("nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         
         if(bindingResult.hasErrors())
